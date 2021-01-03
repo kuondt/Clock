@@ -3,12 +3,14 @@ import Clock from './Clock/Clock'
 import React, { useState, useEffect } from 'react'
 import PostList from './Post/PostList';
 import BetterClock from './BetterClock/BetterClock';
+import Hero from './Hero/Hero';
 
 
 function App() {
   const [show, setShow] = useState(true);
-
   const [postList, setPostList] = useState([]);
+
+  const [count, setCount] = useState(0);
 
   useEffect(() => {
     async function fetchPostList() {
@@ -30,7 +32,7 @@ function App() {
 
   useEffect(() => {
     console.log('Todo effect');
-  })
+  }, [])
 
   return (
     <div className="App">
@@ -41,6 +43,10 @@ function App() {
       <button onClick={() => setShow(!show)}>Hide clock</button>
 
       <PostList posts={postList}></PostList>
+
+      <p>{count}</p>
+      <button onClick={() => setCount(count+1)}>Increase</button>
+      <Hero name="Cuong" />
     </div>
   );
 }
